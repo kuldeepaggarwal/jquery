@@ -19,8 +19,10 @@ console.log("\nNo. of hidden elements on the page:"+jq('*:visible').length);
 console.log("\nNo. of image elements on the page have an alt attribute:"+jq('img[alt]').length);
 
 //6.
-console.log("\nOdd table raows on the page:");
+console.log("\nOdd table rows(index 1,3,7 and so on) on the page:");
 console.log(jq("tr:odd"));
+console.log("\nOdd table rows(row 1,3,7 and so on) on the page:");
+console.log(jq("tr:even"));
 
 
 
