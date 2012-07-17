@@ -14,9 +14,9 @@ console.log("\nlabel for the search input using an attribute selector");
 console.log(jq("label[for='q']"));
 
 //4.
-console.log("No. of hidden elements on the page:"+jq('*:visible').length);
+console.log("\nNo. of hidden elements on the page:"+jq('*:visible').length);
 //5.
-console.log("No. of image elements on the page have an alt attribute:"+jq('img[alt]').length);
+console.log("\nNo. of image elements on the page have an alt attribute:"+jq('img[alt]').length);
 
 //6.
 console.log("\nOdd table raows on the page:");
