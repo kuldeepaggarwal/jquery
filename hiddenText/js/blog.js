@@ -7,8 +7,10 @@ jq(document).ready(function() {
 	blogheadings.each(function(){
 	    var currentheading = jq(this);
 	    currentheading.click(function(){
-	    jq("div#blog p:visible").slideUp(500);
-	    jq(currentheading).next().slideDown(500);
+            if (jq(currentheading).next().css('display') != 'block') {
+                jq("div#blog p:visible").slideUp(500);
+	        jq(currentheading).next().slideDown(500);
+            }
 	    });
 	});
 });
