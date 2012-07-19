@@ -1,5 +1,8 @@
 var jq=jQuery.noConflict();
 jq(document).ready(function() {
+        jq("div#blog a").click(function(e){
+           e.preventDefault();
+        });
 	var blogheadings = jq("div#blog h3");
 	blogheadings.each(function(){
 	    var currentheading = jq(this);
@@ -9,3 +12,4 @@ jq(document).ready(function() {
 	    });
 	});
 });
+
