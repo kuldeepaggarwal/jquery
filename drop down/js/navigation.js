@@ -1,12 +1,18 @@
 var jq = jQuery.noConflict();
 jq(document).ready(function(){
    jq("#nav li").hover(hoverin,hoverout);    
-});
- 
+
 function hoverin() {
-    jq(jq(this).find("ul")).addClass('hover');
+    var li_id = jq(this);
+    jq(li_id.find("ul"))
+        .addClass('hover');
 }
 
 function hoverout() {
-   jq(jq(this).find("ul")).removeClass('hover');
+    var li_id = jq(this);
+    jq(li_id.find("ul"))
+        .removeClass('hover');
 }
+});
+ 
+

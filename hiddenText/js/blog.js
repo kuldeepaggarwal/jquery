@@ -8,8 +8,11 @@ jq(document).ready(function() {
 	    var currentheading = jq(this);
 	    currentheading.click(function(){
             if (jq(currentheading).next().css('display') != 'block') {
-                jq("div#blog p:visible").slideUp(500);
-	        jq(currentheading).next().slideDown(500);
+                jq("div#blog p:visible")
+                     .slideUp(500);
+	        jq(currentheading)
+                    .next()
+		    .slideDown(500);
             }
 	    });
 	});
