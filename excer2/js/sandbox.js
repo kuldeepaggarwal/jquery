@@ -12,7 +12,7 @@ console.log(jq(jq('input[name="q"]').parentsUntil(jq("body"),"form")).addClass("
 
 //3.
 console.log("\nSelect the list item inside #myList that has a class of currents and remove that class from it; add a class of current to the next list item.");
-console.log(jq(jq(jq(jq("#myList li[class='current bar']")).removeClass(function(){console.log(jq(this));})).next()).addClass("current bar"));
+console.log(jq(jq(jq(jq("#myList li.current")).removeClass(function(){console.log(jq(this).removeClass("current"));})).next()).addClass("current"));
 
 
 //4.
@@ -22,5 +22,5 @@ console.log(jq(jq(jq(jq("#specials select").parent()).next()).children()[0]));
 
 //5.
 console.log("\nSelect the first list item in the #slideshow element; add the class current to it, and then add a class of disabled to its sibling elements.");
-console.log(jq(jq(jq("#slideshow li:first")).addClass(function(){console.log(jq(this).addClass('current bar'));})).nextAll().addClass("disabled"));
+console.log(jq(jq(jq("#slideshow li:first")).addClass(function(){console.log(jq(this).addClass('current'));})).nextAll().addClass("disabled"));
 });
