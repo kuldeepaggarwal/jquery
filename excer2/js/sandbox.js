@@ -12,7 +12,7 @@ console.log(jq(jq('input[name="q"]').parentsUntil(jq("body"),"form")).addClass("
 
 //3.
 console.log("\nSelect the list item inside #myList that has a class of currents and remove that class from it; add a class of current to the next list item.");
-console.log(jq(jq(jq(jq("#myList li.current")).removeClass(function(){console.log(jq(this).removeClass("current"));})).next()).addClass("current"));
+console.log(jq(jq(jq(jq("#myList li.current")).removeClass(function(){console.log(jq(this));return ('current');})).next()).addClass("current"));
 
 
 //4.
