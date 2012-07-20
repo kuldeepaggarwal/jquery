@@ -43,13 +43,9 @@ console.log(jq(submit_btn.parent())
 
 //5.
 console.log("\nSelect the first list item in the #slideshow element; add the class current to it, and then add a class of disabled to its sibling elements.");
+li_element = jq("#slideshow li:first");
 
-console.log(jq("#slideshow li:first")
-		.addClass(function() {
-			     console.log(jq(this)
-					    .addClass('current')
-					);
-			  })
+console.log(li_element.addClass('current')
 		.nextAll()
 		.addClass("disabled")
 	    );

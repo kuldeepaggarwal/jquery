@@ -13,18 +13,19 @@ label.remove();
 
 //4.
 inputtf.bind('focus',function() {
-		         inputtf
+		         jq(this)
 			    .val('')
 			    .removeClass('hint');
 });
 //5. 
 inputtf.bind('blur',function() {
-			if(inputtf.val().trim() == '') {
-			    inputtf
+			if(jq(this).val().trim() == '') {
+			    jq(this)
 				.val(label.text())
 				.addClass('hint');
 			}
 
 });
+
 
 });
