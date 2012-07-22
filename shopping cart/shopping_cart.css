@@ -1,0 +1,189 @@
+/*buttons*/
+button
+{
+	border-radius: 4px;
+	background-color: white;
+	width:80px;
+	border:1px solid black;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+img
+{
+	width:75px;
+	height: 75px;
+	//float: left;
+}
+
+/*Main alignment*/
+.outer
+{
+	width: 700px;
+	margin: auto;
+}
+.mainul
+{
+	list-style-type: none;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: auto;
+	margin-top: auto;
+
+}
+.mainli
+{
+	
+	display: inline-block;
+	width: 120px;
+	margin-top: 15px;
+	border:1px solid black;
+
+	padding: 15px 0px 0px 45px;
+	background-color: #F0ECEC;
+	
+}
+.hovereffect
+{
+	border-bottom:1px solid #F0ECEC;
+	background-color: #F0ECEC;
+	z-index: 1212;
+}
+.start
+{
+	border-bottom:1px solid #F0ECEC;
+}
+.tab
+{
+	background-color: #F0ECEC;
+	border: 1px solid black;
+	height:50px;
+
+
+}
+#product_items td
+{
+
+}
+.products_head
+{
+	padding-top: 5px;
+	padding-left: 5px;
+	background-color: #F0ECEC;
+}
+.products_data
+{	
+	overflow: auto;
+	margin-top:-8px;
+	background-color: white ;
+	height: 285px;
+	
+}
+.buttonhovereffect
+{
+	background-color: gray;
+	color: white;
+}
+.toggle
+{
+	height: 325px;
+	border-right: 0.5px solid #F0ECEC;
+}
+.para
+{
+	font-size: 15px;
+}
+.new_input
+{
+	width: 35px;
+	text-indent: 3px;
+}
+.new_btn
+{
+	width:100px;
+	height: 30px;
+	font-size: 12px;
+}
+.new_generate
+{
+	background-color: #F0ECEC;
+	border-bottom:3px solid white;
+	height: 15px;
+
+}
+#items_json 
+{
+	border-collapse: collapse;
+
+}
+#togglediv2
+{
+	overflow: auto;
+
+
+}
+#mycart_items
+{
+	border-collapse:collapse;
+}
+#mycart_items img
+{
+	float: left;
+	vertical-align: text-top;
+	width:40px;
+	height: 40px;
+}
+#mycart_items tr td:first
+{
+	vertical-align: text-top;
+
+}
+#mycart_items th
+{
+	font-size: 15px;
+	font-weight: 1;
+}
+#mycart_items tr
+{
+	
+	background-color: #F0ECEC;
+	border-bottom:3px solid white;
+	height: 10px;
+}
+#mycart_items input
+{
+	width:35px;
+	text-indent: 3px;
+	border-radius: 0px;
+	border: 1px solid #F0ECEC;
+}
+.footer
+{
+	text-align: right;
+	background-color: #F0ECEC;
+	border: 1px solid black;
+	border-left: 1px solid #F0ECEC;
+	padding: 10px;
+}
+label[for='balance']
+{
+	font-size: 25px;
+}
+input#balance
+{
+	width:150px;
+	height: 32px;
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+	border:1px solid;
+}
+input#checkoutbtn
+{
+	width:170px;
+	height:30px;
+	background-color: gray;
+	border:1px solid gray;
+	color: white;
+	font-weight: bold;
+	border-radius: 4px;
+}

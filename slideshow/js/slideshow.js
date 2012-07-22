@@ -27,8 +27,7 @@ jq(slideshowul)
                       if(count == 2) {
 		          count=-1;
 		      }
-                      jq(li_children[num])
-		          .fadeIn(1500,function() {
+                      jq(li_children[num]).fadeIn(1500,function() {
 					   count++;
 					   rotation(count);
                                        })

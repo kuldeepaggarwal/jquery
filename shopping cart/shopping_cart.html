@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link href="shopping_cart.css" rel="stylesheet" type="text/css"/>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="shopping_cart.js"></script>
+	</head>
+	<body>
+		<div class="outer">
+			<div class="tab">
+				<ul class="mainul">
+						<li class="mainli start" id="mainli1">
+							Products
+						</li>
+						<li class="mainli" id="mainli2">
+								My Cart(<label for='2'>0</label>)
+						</li>
+				</ul>	
+			</div>
+			<div>
+		<div id="togglediv1" class="toggle">
+			<div class="products_head" id="allitems">
+							<label for='search_input'>Search: </label>
+							<input type="text" id ="searchtb" name="search_input">
+							<button value="Search" id="searchbtn">Search</button>
+							<button value="Clear" id="clearbtn">Clear</button>
+							<label for='category'>Category:</label>
+							<select id="category">
+								<option>ALL</option>
+								<option>Laptops</option>
+							</select>
+							<hr>
+			</div>
+			<div class="products_data" id="item_list">
+
+			</div>
+		</div>
+		<div id="togglediv2" class="toggle" style="display:none">
+			<table id="mycart_items">
+								<tr style="text-align:left">
+									<th width="50%">Products</th>
+									<th width="15%">Price</th>
+									<th width="15%">Quantity</th>
+									<th width="15%">Subtotal</th>
+									<th width="15%">Action</th>
+								</tr>
+							</table>
+		</div>
+	</div>
+
+
+			<div class="footer">
+				<label for='balance' >Total:</label>
+				<input id='balance' value="0.00" disabled="disabled"/>
+				<input type="button" id="checkoutbtn" value="CHECKOUT" />
+			</div>
+		</div>
+	</body>
+</html>

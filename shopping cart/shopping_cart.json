@@ -1,0 +1,38 @@
+{
+	"1": {
+		"img" :"images/1.jpg",
+		"title" : "Dell Studio XPS 16",
+		"category" : "Computers",
+		"details" : "Blending power with elegance, the Dell Studio XPS™ 16 delivers the ultimate multimedia laptop experience, providing superb performance and design",
+		"price":2299.99
+	},
+	"2": {
+		"img" :"images/2.jpg",
+		"title" : "Alienware-x51",
+		"category" : "Computers",
+		"details" : "3rd Generation Intel® Core™ i7-3770 Processor (3.4GHz, 8MB Cache, with Turbo Boost Technology 2.0)",
+		"price":71990.00
+	},
+	"3": {
+		"img" :"images/3.jpg",
+		"title" : "PowerShot G1 X",
+		"category" : "Cameras",
+		"details" : "Photographic excellence has arrived with the PowerShot G1 X, the most premium Canon compact camera that boasts of the largest sensor at 1.5”.",
+		"price":47995.00
+	},
+	"4": {
+		"img" :"images/4.jpg",
+		"title" : "Iphone-3gs",
+		"category" : "Mobiles",
+		"details" : "iPhone 3GS embodies Apple’s continuing environmental progress. ",
+		"price":20000.00
+	},
+	"5": {
+		"img" :"images/5.jpg",
+		"title" : "MacBook Pro with Retina Display",
+		"category" : "Laptops",
+		"details" : "Retina display 15.4-inch (diagonal) LED-backlit display with IPS technology; 2880-by-1800 resolution at 220 pixels per inch with support for millions of colors Supported resolutions: 2880 by 1800 pixels (Retina); scaled resolutions: 1920 by 1200, 1680 by 1050, 1280 by 800, and 1024 by 640 pixels",
+		"price":121000.00
+	}
+
+}
