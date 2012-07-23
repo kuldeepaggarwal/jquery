@@ -36,7 +36,6 @@ jq(document).ready(function(){
 			var addtocartbutton = jq('<button/>').html("Add to Cart").attr({'value':"Add to Cart",'class':"new_btn",'id':key});
 			col4.append(addtocartbutton);
 			row.append(col4);
-
 			table.append(row);
 		});
 		
@@ -103,9 +102,14 @@ jq(document).ready(function(){
 	function calculate () {
 
 		var element = jq(this);
-		var updated_subtotal = purchase_list[element.attr('name')] * element.val();
-		jq("#mycart"+element.attr('name')).find("label[for=subtotal]").html(updated_subtotal);
-		recalculate();
+		var id = element.attr('name');
+		if(Number(element.val()) !== 0) {
+			var updated_subtotal = purchase_list[id] * element.val();
+			jq("#mycart"+id).find("label[for=subtotal]").html(updated_subtotal);
+			recalculate();
+	    }else {
+	    	jq("#button"+id).trigger('click');
+	    }
 	}
 	function recalculate() {
 
