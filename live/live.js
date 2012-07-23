@@ -17,15 +17,17 @@ jq(document).ready(function() {
 		jq("#container1").prepend('<div id='+count1+'>'+count1+'</div>');		
 	});
 
-	jq("#container1").delegate('div','click',function(){		
+	jq("#container1").delegate('div','click',function(){
+		//checking whether the clicked div in the stack is on the TOP 		
 		if (jq(this).attr('id')==count1) { 
 			jq(this).remove();
 			count1--;
 			if(count1===0) {
 				jq("#container1").html("EMPTY CONTAINER");
 			}
+		} else {
+		    jq(this).addClass('latest').siblings().removeClass();
 		}
-		jq(this).addClass('latest').siblings().removeClass();
 	});
 
 
