@@ -1,6 +1,6 @@
 var jq = jQuery.noConflict(),bool=true,data_collection;
 jq(document).ready(function(){
-	var purchase_list = new Array();
+	var purchase_list = {},count = Number(0);
 	if(bool){
 		jq.getJSON('shopping_cart.json',function(data){
 			data_collection = data;
@@ -10,121 +10,106 @@ jq(document).ready(function(){
 	} else {
 		filler();
 	}
+	
 	function filler(){
-		var table = jq('<table id = "items_json" class="new_table" style="width:100%" height=100%/>'),rows="",rownumber=1;
+		var table = jq('<table/>').attr({'id':"items_json",'class':"new_table",'style':"width:100%; height=100%"});
 		jq.each(data_collection,function(key,value){
+			
+			var row = jq('<tr/>').attr({'id':value.id,'class':'new_generate'});
 
-			var col1='<td id = "image'+rownumber+'" width=5% ><img src="'+value.img+'" /></td>';
-			var col2 = '<h3>'+value["title"]+'</h3>';
-			var category = value.category+"\n";
-			col2 += '<p class="para">'+category+value.details+'</p>';
-			col2 += '<h4>Price:'+value["price"]+'</h4>';
-			col2 = '<td id = "details'+rownumber+'" width=60% >'+col2+'</td>';
-			var col3 = '<td id = "quantitycolumn'+rownumber+'" width=25% >Quantity : <input value=1 class="new_input"/></td>';
-			var col4 = '<td width=10%><button value="Add to Cart" class="new_btn" id="button_'+rownumber+'">Add to Cart</button></td>'
-			var row = '<tr id='+rownumber+' class=new_generate>'+col1+col2+col3+col4+'</tr>';
-			rows=rows+row;
-			rownumber++;
+			var col1=jq('<td/>').attr({ 'style':'width:5%'}).append(jq('<img/>').attr('src',value.img));
+			row.append(col1);
 
+			var col2 = jq('<td/>').attr('style','width:60% ');
+			var title = jq('<h3/>').html(value["title"]);
+			var description = jq('<p/>').addClass("para").html("Category:"+value.category+"<br/>"+value.details);
+			var price = jq('<h4/>').html('Price:'+value["price"]);
+			col2.append(title).append(description).append(price);
+			row.append(col2);
+
+			var col3 = jq('<td />').attr('style', "width:25%" ).html("Quantity :");
+			var quantity = jq('<input/>').attr({'value':'1' ,'class':"new_input"});
+			col3.append(quantity);
+			row.append(col3);
+
+			var col4 = jq('<td/>').attr('style','width:10%');
+			var addtocartbutton = jq('<button/>').html("Add to Cart").attr({'value':"Add to Cart",'class':"new_btn",'id':key});
+			col4.append(addtocartbutton);
+			row.append(col4);
+
+			table.append(row);
 		});
-		table.html(rows);
-		jq("#item_list").append(jq(table));
+		
+		jq("#item_list").append(table);
 		jq("#item_list button").hover(function(){jq(this).addClass("buttonhovereffect")},function(){jq(this).removeClass("buttonhovereffect")})
 							   .bind('click',addtocart);
 	}
-	jq("#mainli1").bind('click',function(){
-
-		(jq("#togglediv1").show().siblings().hide());
-		jq(this).addClass("hovereffect").siblings().removeClass("hovereffect");
-	});
-	jq("#mainli2").bind('click',function(){
-		jq("#togglediv2").show().siblings().hide();
-		jq(this).addClass("hovereffect").siblings().removeClass("hovereffect start");
-	});
-	
 	function addtocart() {
-		var addingrow = jq(this).attr("id").split('_')[1];
-		var elementno = purchase_list.indexOf(addingrow);
-		var noofitems = jq("#"+jq(this).attr("id").split('_')[1]).find("input").val();
-		if(elementno === -1)
+		var addingrow_id = jq(this).attr("id");
+		var elementno = purchase_list[addingrow_id];
+		var noofitems = Number(jq("#P"+addingrow_id).find("input.new_input").val());
+		var data_product = data_collection[addingrow_id];
+		if(!elementno)
 		{
-			var id =addingrow;
-			purchase_list.push(id);
-			purchase_list.push(noofitems);
-			additem_mycart(id,noofitems);
-			calculatetotal();
+			
+			purchase_list[addingrow_id]=data_product["price"];
+			count++;
+			var row = jq('<tr/>').attr({'id':"mycart"+addingrow_id});
+
+			var col1=jq('<td/>').append(jq('<img/>').attr('src',data_product.img));
+			var title = jq('<h3/>').html(data_product["title"]);
+			col1.append(title);
+			row.append(col1);
+
+			var col2 = jq('<td/>');
+			var price = jq('<label/>').attr('for','price').html(purchase_list[addingrow_id]);
+			col2.append(price);
+			row.append(col2);
+
+			var col3 = jq('<td/>');
+			var quantity = jq('<input/>').attr({'value':noofitems,'name':addingrow_id});
+			col3.append(quantity);
+			row.append(col3);
+
+			var col4 = jq('<td/>');
+			var subtotal_label = jq('<label/>').attr('for','subtotal').html(noofitems*purchase_list[addingrow_id]);
+			col4.append(subtotal_label);
+			row.append(col4);
+			quantity.bind('focusout',calculate);
+			var col5 = jq('<td/>');
+			var remove_button = jq('<button/>').attr({'id':"button"+addingrow_id,'name':addingrow_id}).html("Remove");
+			col5.append(remove_button);
+			row.append(col5);
+			
+			jq("#mycart_items").append(row);			
+			remove_button.bind('click',removeitem);		
 		}
 		else {
-			var existingquantity = Number(purchase_list[elementno + 1]);
-			var existingquantity_addedquantity = existingquantity + Number(noofitems);
-			purchase_list[elementno+1] = existingquantity_addedquantity;
-			update_mycart(purchase_list[elementno],purchase_list[elementno+1]);
-				
+			var cartrow = jq("#mycart"+addingrow_id);
+			var existingquantity_addedquantity = Number(cartrow.find("input").val()) + noofitems;
+			cartrow.find("input").val(existingquantity_addedquantity);
+			cartrow.find("label[for=subtotal]").html(existingquantity_addedquantity * purchase_list[addingrow_id]);
 		}
-		jq("label[for=2]").text(purchase_list.length/2);
-		
-		
-		
-	}
-	function update_mycart (id,updatedquantity) {
-		console.log(id);
-		console.log(updatedquantity);
-		var mycartrow = jq("#mycart"+id);
-		mycartrow.find("input").val(updatedquantity);
-		var updatedsbtotal = mycartrow.find("label[for=price]").text() * updatedquantity;
-		mycartrow.find("label[for=subtotal]").text(updatedsbtotal);
-		calculatetotal();
-	}
-	function additem_mycart (id,noofitems1) {
-		var rowfrom_items_json = jq("#"+id).clone();
-		var data = new Array;
-		data[0] = rowfrom_items_json.find("#image"+id).html();
-		data[0]+=('<h4>'+jq(rowfrom_items_json.find("h3")).html()+'</h4>');
-		//data[0]+=data[0].html();
-		data[1] = '<label for=price>'+rowfrom_items_json.find("h4").html().split(':')[1]+'</label>';		
-		data[3] = '<label for=subtotal>'+Number(jq(data[1]).text()) * Number(noofitems1)+'</label>';
-		data[2] = '<input id=itemquantity_'+id+' value ='+noofitems1+' />';
-		data[4] = '<button id=remove_'+id+' value="REMOVE"  >REMOVE</button>';
-
-		var newrow="";
-		for (var i = 0; i <= 4; i++) {
-			var newcol = '<td>'+data[i]+'</td>';
-			newrow+=newcol;
-		}
-
-		newrow = '<tr id=mycart'+id+'>' + newrow + '</tr>';
-		jq("#mycart_items").append(jq(newrow));
-		jq("#mycart_items input").unbind();
-		jq("#mycart_items input").bind('focusout',recalculate);
-		jq("#mycart_items button").unbind();
-		jq("#mycart_items button").bind('click',removeitem);
-	}
-	function recalculate () {
-		var idd = jq(this).attr('id').split('_')[1];
-		var updtqty = jq(this).val();
-		update_mycart(idd,updtqty);
+		recalculate();
 	}
 	function removeitem () {
-		 jq("label[for=2]").text( Number(jq("label[for=2]").text()) - 1);
-		var id = jq(this).attr('id').split('_')[1];
-		var row_fordeletion = jq("#mycart"+id);
-		var subtot = Number(row_fordeletion.find("label[for=subtotal]").text());
-		var totalprice = Number(jq("#balance").val());
-		totalprice -= subtot;
-		jq("#balance").val(totalprice);
-		var rowindex = row_fordeletion.index();
-		for (var i = 0; i < purchase_list.length; i = i+2) {
-			if(purchase_list[i]=== id) {
-				purchase_list.splice(i,2);
-				break;
-			}
-		};
+		var row_id = jq(this).attr('name');
+		var row_fordeletion = jq("#mycart"+row_id);
 		row_fordeletion.remove();
-		console.log(rowindex);
-		console.log(purchase_list);
+		delete purchase_list[row_id];
+		count--;
+		recalculate();
 	}
-	function calculatetotal () {
+	function calculate () {
 
+		var element = jq(this);
+		var updated_subtotal = purchase_list[element.attr('name')] * element.val();
+		jq("#mycart"+element.attr('name')).find("label[for=subtotal]").html(updated_subtotal);
+		recalculate();
+	}
+	function recalculate() {
+
+		jq("label[for=2]").text(count);
 		var totalprice =Number(0);
 		var subtotal_collection = jq("#mycart_items").find("label[for=subtotal]");
 		jq.each(subtotal_collection,function(key,value){
@@ -132,6 +117,16 @@ jq(document).ready(function(){
 		});
 		jq("#balance").val(totalprice);
 	}
+jq("#mainli1").bind('click',function(){
 
+		(jq("#togglediv1").show().siblings().hide());
+		jq(this).addClass("hovereffect").siblings().removeClass("hovereffect");
+	});
+
+	jq("#mainli2").bind('click',function(){
+		jq("#togglediv2").show().siblings().hide();
+		jq(this).addClass("hovereffect").siblings().removeClass("hovereffect start");
+	});
+	
 
 });

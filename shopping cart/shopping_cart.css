@@ -39,7 +39,7 @@ img
 	border:1px solid black;
 
 	padding: 15px 0px 0px 45px;
-	background-color: #F0ECEC;
+	background-color: white;
 	
 }
 .hovereffect
@@ -50,6 +50,7 @@ img
 }
 .start
 {
+	background-color: #F0ECEC;
 	border-bottom:1px solid #F0ECEC;
 }
 .tab

@@ -1,12 +1,14 @@
 {
 	"1": {
+		"id" : "P1",
 		"img" :"images/1.jpg",
 		"title" : "Dell Studio XPS 16",
 		"category" : "Computers",
 		"details" : "Blending power with elegance, the Dell Studio XPS™ 16 delivers the ultimate multimedia laptop experience, providing superb performance and design",
-		"price":2299.99
+		"price":2299.00
 	},
 	"2": {
+		"id" : "P2",
 		"img" :"images/2.jpg",
 		"title" : "Alienware-x51",
 		"category" : "Computers",
@@ -14,6 +16,7 @@
 		"price":71990.00
 	},
 	"3": {
+		"id" : "P3",
 		"img" :"images/3.jpg",
 		"title" : "PowerShot G1 X",
 		"category" : "Cameras",
@@ -21,6 +24,7 @@
 		"price":47995.00
 	},
 	"4": {
+		"id" : "P4",
 		"img" :"images/4.jpg",
 		"title" : "Iphone-3gs",
 		"category" : "Mobiles",
@@ -28,6 +32,7 @@
 		"price":20000.00
 	},
 	"5": {
+		"id" : "P5",
 		"img" :"images/5.jpg",
 		"title" : "MacBook Pro with Retina Display",
 		"category" : "Laptops",
