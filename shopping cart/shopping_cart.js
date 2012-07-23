@@ -15,7 +15,7 @@ jq(document).ready(function(){
 		var table = jq('<table/>').attr({'id':"items_json",'class':"new_table",'style':"width:100%; height=100%"});
 		jq.each(data_collection,function(key,value){
 			
-			var row = jq('<tr/>').attr({'id':value.id,'class':'new_generate'});
+		var row = jq('<tr/>').attr({'id':value.id,'class':'new_generate'});
 
 			var col1=jq('<td/>').attr({ 'style':'width:5%'}).append(jq('<img/>').attr('src',value.img));
 			row.append(col1);
