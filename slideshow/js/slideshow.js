@@ -1,38 +1,46 @@
 var jq=jQuery.noConflict();
 jq(document).ready(function() {
                 count =1;
-		var slideshowul = jq("#slideshow").prependTo("body");
-		var total =(jq(slideshowul).children().length);
-		var totimg_label = jq('<label>Total Images</label>').insertAfter(slideshowul);
-		var totimg_tb = jq('<input disabled=disabled value='+total+' />').insertAfter(totimg_label);
-		var imgnum_label = jq('<label>Image No.</label>').insertAfter(totimg_tb);
-		var imgnum_tb = jq('<input disabled=disabled value=1 />').insertAfter(imgnum_label);
-		(slideshowul)
+		var slideshow = jq("#slideshow");
+		var slideshowul = slideshow.prependTo("body");
+		var total =slideshowul.children().length;
+		var totimg_label = jq('<label/>').html("Total Images").insertAfter(slideshowul);
+		var totimg_tb = jq('<input/>').attr({'disabled':'disabled','value':total}).insertAfter(totimg_label);
+		var imgnum_label = jq('<label/>').html("Image No.").insertAfter(totimg_tb);
+		var imgnum_tb = jq('<input/>').attr({'disabled':'disabled','value':'1'}).insertAfter(imgnum_label);
+
+		slideshowul
 		    .find("li")
 		    .hide();
-		li_children = jq(slideshowul).children();
-		jq(li_children.first()).fadeIn(200,function() {
-							rotation(count);
-						   });
+
+		first_li = slideshow.find("li:first");
+		first_li.fadeIn(1200,function() {
+				t = setTimeout(rotation,1000);
+			});
 
 
-
-
-function rotation(num) {
-
-jq(slideshowul)
-    .find("li:visible")
-    .fadeOut(1200,function() {
-                      imgnum_tb.val(count+1);
-                      if(count == 2) {
-		          count=-1;
-		      }
-                      jq(li_children[num]).fadeIn(1500,function() {
-					   count++;
-					   rotation(count);
-                                       })
+function rotation() {
+    var visibleli = slideshow.find("li:visible");
+    visibleli.fadeOut(1200,function() {			
+			imgnum_tb.val(jq(this).prevAll().length + 2);
+			if(imgnum_tb.val() == 4) {
+				imgnum_tb.val(1);
+				fadein(first_li);
+			} else{
+			    fadein(jq(this).next());
+			}
                   });
+    }
+
+
+function fadein(id) {
+    id.fadeIn(1200,function() {	
+		jq(this).delay(1000);
+		setTimeout(rotation,1000);
+	});
 }
+
+
 
 });
 
