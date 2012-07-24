@@ -14,14 +14,14 @@ jq(document).ready(function() {
 		    .hide();
 
 		first_li = slideshow.find("li:first");
-		first_li.fadeIn(1200,function() {
-				t = setTimeout(rotation,1000);
+		first_li.fadeIn(1000,function() {
+				
 			});
 
-
+t = setInterval(rotation,3000);
 function rotation() {
     var visibleli = slideshow.find("li:visible");
-    visibleli.fadeOut(1200,function() {			
+    visibleli.fadeOut(1000,function() {			
 			imgnum_tb.val(jq(this).prevAll().length + 2);
 			if(imgnum_tb.val() == 4) {
 				imgnum_tb.val(1);
@@ -34,9 +34,8 @@ function rotation() {
 
 
 function fadein(id) {
-    id.fadeIn(1200,function() {	
+    id.fadeIn(1000,function() {	
 		jq(this).delay(1000);
-		setTimeout(rotation,1000);
 	});
 }
 
