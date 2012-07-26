@@ -121,7 +121,8 @@ jq(document).ready(function(){
 		});
 		jq("#balance").val(totalprice);
 	}
-jq("#mainli1").bind('click',function(){
+
+	jq("#mainli1").bind('click',function(){
 
 		(jq("#togglediv1").show().siblings().hide());
 		jq(this).addClass("hovereffect").siblings().removeClass("hovereffect");
