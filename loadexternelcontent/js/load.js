@@ -5,13 +5,13 @@ jq(document).ready(function() {
   });
   var blogheadinglists = jq("#blog>ul>li>h3");
   blogheadinglists.each(function(index,element) {
-    var ahref = jq(element).find("a").attr('href').replace("#"," #");
+    var ahref = jq(element).find("a").attr('href').split("#");
     var div=jq('<div/>');
     jq(element)
       .append(div)
-      .data("target" ,"data/"+ahref)		
+      .data("target" ,"data/" + ahref[0] + " #" + ahref[1])		
       .click(function() {
-        div.load("data/"+ahref);
+        div.load("data/" + ahref[0] + " #" + ahref[1]);
       });
   });
 });
