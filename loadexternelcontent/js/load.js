@@ -4,9 +4,9 @@ jq(document).ready(function() {
     e.preventDefault();
   });
   var blogheadinglists = jq("#blog>ul>li>h3");
-  blogheadinglists.each(function(index,element) {
+  blogheadinglists.each(function(index, element) {
     var ahref = jq(element).find("a").attr('href').split("#");
-    var div=jq('<div/>');
+    var div = jq('<div/>');
     jq(element)
       .append(div)
       .data("target" ,"data/" + ahref[0] + " #" + ahref[1])		
