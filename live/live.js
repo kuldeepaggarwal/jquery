@@ -1,32 +1,24 @@
 var jq=jQuery.noConflict();
 jq(document).ready(function() {
-	/*jq("#additembutton").bind('click',function(){
-		count =jq("#container").children().length+1;
-		jq("#container").append('<div id='+count+'>'+count+'</div>');		
-	});
-	jq("#container").delegate('div','click',function(){
-		
-		if (jq(this).attr('id')==count) { jq(this).remove();count--;}
-		jq(this).addClass('latest').siblings().removeClass();
-	});*/
+
 	jq("#additembutton").bind('click',function(){
-		count1 =jq("#container1").children().length+1;
-		if(count1===1) {
+		childrencount =jq("#container1 div").length+1;
+		if(childrencount===1) {
 			jq("#container1").html("");
 		}
-		jq("#container1").prepend('<div id='+count1+'>'+count1+'</div>');		
+		newdiv = jq('<div/>').html(childrencount);
+		jq("#container1").prepend(newdiv);		
 	});
 
 	jq("#container1").delegate('div','click',function(){
-		//checking whether the clicked div in the stack is on the TOP 		
-		if (jq(this).attr('id')==count1) { 
+		topdiv =jq("#container1 div:first-child");
+		if (jq(this)[0] == topdiv[0]) { 
 			jq(this).remove();
-			count1--;
-			if(count1===0) {
+			if(jq("#container1 div").length===0) {
 				jq("#container1").html("EMPTY CONTAINER");
 			}
 		} else {
-		    jq(this).addClass('latest').siblings().removeClass();
+		    jq(this).addClass('highlight').siblings().removeClass('highlight');
 		}
 	});
 
