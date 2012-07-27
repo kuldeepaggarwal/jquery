@@ -42,13 +42,13 @@ img
 	background-color: white;
 	
 }
-.hovereffect
+.hover_effect
 {
 	border-bottom:1px solid #F0ECEC;
 	background-color: #F0ECEC;
 	z-index: 1212;
 }
-.start
+.initial
 {
 	background-color: #F0ECEC;
 	border-bottom:1px solid #F0ECEC;
@@ -75,7 +75,7 @@ img
 	height: 285px;
 	
 }
-.buttonhovereffect
+.button_hover_effect
 {
 	background-color: gray;
 	color: white;
@@ -85,10 +85,16 @@ img
 	height: 325px;
 	border-right: 0.5px solid #F0ECEC;
 }
+.new_table
+{
+	width:100%; 
+	height:100%
+}
 .para
 {
 	font-size: 15px;
 }
+
 .new_input
 {
 	width: 35px;
@@ -111,6 +117,22 @@ img
 {
 	border-collapse: collapse;
 
+}
+#items_json tr td:nth-child(1)
+{
+	width:5%;
+}
+#items_json tr td:nth-child(2)
+{
+	width:60%;
+}
+#items_json tr td:nth-child(3)
+{
+	width:25%;
+}
+#items_json tr td:nth-child(4)
+{
+	width:10%;
 }
 #togglediv2
 {
