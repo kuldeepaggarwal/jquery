@@ -44,11 +44,27 @@ jq(document).ready(function() {
   }
   function add_to_cart() {
     var adding_rowId = jq(this).attr("id");
-    var element_no = cart_items[adding_rowId];
     var no_of_items = Number(jq("#P" + adding_rowId + " input.new_input").val());
+    maintain_CartItems(adding_rowId,no_of_items);
+    DisplayCart();
+    recalculate();
+  }
+  function maintain_CartItems(id, items) {
+    element_no = cart_items[id];
     if (!element_no) {
+      cart_items[id] = {"price" : product_collection[id]["price"] , "quantity" : items }
+    } else {
+      update_CartQty(id,cart_items[id]["quantity"] + items);
+    }
+  }
+  function update_CartQty(id,qty) {
+    cart_items[id]["quantity"] = qty;
+  }
+  function DisplayCart() {
+    myTable = jq("#mycart_items");
+    myTable.find("tr").slice(1).remove();
+    jq.each(cart_items, function(adding_rowId, value) {
       var data_product = product_collection[adding_rowId];
-      cart_items[adding_rowId] = {"price" : data_product["price"] , "quantity" : no_of_items }
       var row = jq('<tr/>').attr({'id' : "mycart" + adding_rowId});
       var column1 = jq('<td/>').append(jq('<img/>').attr('src', data_product.img));
       var title = jq('<h3/>').html(data_product["title"]);
@@ -71,12 +87,14 @@ jq(document).ready(function() {
       var remove_button = jq('<button/>').attr({'id' : "button" + adding_rowId, 'name' : adding_rowId}).html("Remove");
       column5.append(remove_button);
       row.append(column5);
-      jq("#mycart_items").append(row);
+      myTable.append(row);
       remove_button.bind('click', removeitem);
-    } else {
-      cart_items[adding_rowId]["quantity"] += no_of_items;
-    }
-    recalculate();
+    });
+  jq("#mycart_items button").hover(function() {
+      jq(this).addClass("button_hover_effect")
+    }, function() {
+      jq(this).removeClass("button_hover_effect")
+    })
   }
   function removeitem() {
     var row_id = jq(this).attr('name');
@@ -89,7 +107,7 @@ jq(document).ready(function() {
     var element = jq(this);
     var id = element.attr('name');
     if (Number(element.val()) !== 0) {
-      cart_items[id]["quantity"] = Number(element.val());
+      update_CartQty(id,Number(element.val()));
       recalculate();
     } else {
       jq("#button" + id).trigger('click');
