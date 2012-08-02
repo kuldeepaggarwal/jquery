@@ -46,7 +46,7 @@ jq(document).ready(function() {
     var adding_rowId = jq(this).attr("id");
     var no_of_items = Number(jq("#P" + adding_rowId + " input.new_input").val());
     maintain_CartItems(adding_rowId,no_of_items);
-    DisplayCart();
+    renderCartItems();
     recalculate();
   }
   function maintain_CartItems(id, items) {
@@ -60,7 +60,7 @@ jq(document).ready(function() {
   function update_CartQty(id,qty) {
     cart_items[id]["quantity"] = qty;
   }
-  function DisplayCart() {
+  function renderCartItems() {
     myTable = jq("#mycart_items");
     myTable.find("tr").slice(1).remove();
     jq.each(cart_items, function(adding_rowId, value) {
